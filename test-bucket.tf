@@ -22,8 +22,8 @@ locals {
   G-CheckEvidence = {
     "armageddon.txt"                    = "text/plain"
     "Webhook.png"                       = "image/png"
-    
-  }
+    "PipelineApply.png"                 ="image/png"
+   }
 }
 
 resource "aws_s3_object" "submission_evidence" {
