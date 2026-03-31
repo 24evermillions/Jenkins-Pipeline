@@ -18,6 +18,24 @@ provider "aws" {
   region  = "ap-northeast-1"
 }
 
+locals {
+  G-CheckEvidence = {
+    "armageddon.txt"                    = "text/plain"
+    "Webhook.png"                       = "image/png"
+    
+  }
+}
+
+resource "aws_s3_object" "submission_evidence" {
+  for_each = local.G-CheckEvidence
+
+  bucket       = aws_s3_bucket.frontend.id
+  key          = each.key
+  source       = "${path.module}/G-CheckEvidence/${each.key}"
+  content_type = each.value
+  source_hash  = filemd5("${path.module}/G-CheckEvidence/${each.key}")
+}
+
 resource "aws_s3_bucket" "frontend" {
   bucket_prefix = "jenkins-bucket-"
   force_destroy = true
@@ -27,3 +45,5 @@ resource "aws_s3_bucket" "frontend" {
     Name = "Jenkins Bucket"
   }
 }
+
+
