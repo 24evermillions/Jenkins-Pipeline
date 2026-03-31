@@ -22,13 +22,6 @@ pipeline {
                 }
             }
         }
-      stage('Upload Evidence to S3') {
-            steps {
-                withCredentials([aws(credentialsId: 'aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    sh 'aws s3 sync ./evidence/ s3://jenkins-gcheck-assets/'
-                }
-            }
-        }
 
         stage('Optional Destroy') {
             steps {
