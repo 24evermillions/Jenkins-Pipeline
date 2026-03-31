@@ -8,9 +8,9 @@ terraform {
 
   backend "s3" {
     bucket  = "s3-jenkins-pipeline1212"                 # Name of the S3 bucket
-    key     = "s3-jenkins-pipeline1212.tfstate"        # The name of the state file in the bucket
+    key     = "s3-jenkins-pipeline1212.tfstate"         # The name of the state file in the bucket
     region  = "ap-northeast-1"                          # Use a variable for the region
-    encrypt = true                                 # Enable server-side encryption (optional but recommended)
+    encrypt = true                                      # Enable server-side encryption (optional but recommended)
   } 
 }
 
